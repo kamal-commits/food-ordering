@@ -38,6 +38,8 @@ export default (state, action) => {
         updatedQty = qty - 1;
         index = shoppingCart.findIndex((item) => item.id === action.id);
         shoppingCart[index] = food;
+      } else {
+        return state;
       }
 
       return {
