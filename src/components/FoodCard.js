@@ -14,7 +14,16 @@ const FoodCard = ({ item }) => {
         id: id,
         item,
       },
-      toast.success('item Added')
+      toast(' Item Added to Basket', {
+        type: 'success',
+        position: 'top-center',
+        autoClose: 5000,
+        // hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     );
   };
 

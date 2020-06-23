@@ -19,7 +19,7 @@ const BasketItems = ({ history }) => {
       <div>
         {shoppingCart.length > 0 ? (
           <div>
-            <table className="table table-borderless text-center">
+            <table className="table table-borderless text-center table-responsive">
               <thead>
                 <tr className="food-details">
                   <th>Item</th>
@@ -38,22 +38,7 @@ const BasketItems = ({ history }) => {
                     </td>
                     <td> {item.name} </td>
                     <td>
-                      <span
-                        className="btn btn-danger"
-                        onClick={() =>
-                          dispatch({
-                            type: DECREASE_FOOD_IN_BASKET,
-                            id: item.id,
-                            item,
-                          })
-                        }
-                      >
-                        -
-                      </span>
-                      <span className="font-weight-bold mr-2 ml-2">
-                        {item.qty}
-                      </span>
-                      <span
+                      <div
                         className="btn btn-success"
                         onClick={() =>
                           dispatch({
@@ -64,25 +49,61 @@ const BasketItems = ({ history }) => {
                         }
                       >
                         +
-                      </span>
-                    </td>
+                      </div>
 
-                    <td> {item.rate} </td>
-                    <td>
-                      <button
+                      <div className="font-weight-bold mr-2 ml-2">
+                        {item.qty}
+                      </div>
+                      <div
                         className="btn btn-danger"
                         onClick={() =>
                           dispatch({
-                            type: REMOVE_FROM_CART,
+                            type: DECREASE_FOOD_IN_BASKET,
                             id: item.id,
                             item,
                           })
                         }
                       >
+                        -
+                      </div>
+                    </td>
+
+                    <td>
+                      {' '}
+                      <i class="fa fa-inr" aria-hidden="true"></i>
+                      {item.rate}{' '}
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() =>
+                          dispatch(
+                            {
+                              type: REMOVE_FROM_CART,
+                              id: item.id,
+                              item,
+                            },
+                            toast(' Item Removed From Cart..!', {
+                              type: 'success',
+                              position: 'top-center',
+                              autoClose: 5000,
+                              // hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                            })
+                          )
+                        }
+                      >
                         Remove
                       </button>
                     </td>
-                    <td> {item.rate * item.qty} </td>
+                    <td>
+                      {' '}
+                      <i class="fa fa-inr" aria-hidden="true"></i>
+                      {item.rate * item.qty}{' '}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -101,7 +122,16 @@ const BasketItems = ({ history }) => {
   };
 
   const placeOrder = () => {
-    toast.success('Order Placed Succesfully..!');
+    toast(' Order Placed..!', {
+      type: 'success',
+      position: 'top-center',
+      autoClose: 5000,
+      // hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   const amountTotal = () => {
@@ -123,11 +153,11 @@ const BasketItems = ({ history }) => {
   };
 
   return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid ">
       <ToastContainer />
       <div className="row">
-        <div className="col-md-7">{basket()}</div>
-        <div className="col-md-4 offset-md-1">{amountTotal()}</div>
+        <div className="col-md-7 offset-md-1 text-center mt-5">{basket()}</div>
+        <div className="col-md-4 mt-5 ">{amountTotal()}</div>
       </div>
     </div>
   );
