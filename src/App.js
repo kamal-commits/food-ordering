@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import BasketItems from './components/BasketItems';
+import FoodMenu from './components/FoodMenu';
+import Navbar from './components/Navbar';
+import { BasketContextProvider } from './context/basketContext';
+import { FoodContextProvider } from './context/foodContext';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <FoodContextProvider>
+        <BasketContextProvider>
+          <Router>
+            <Navbar />
+            <Switch>
+              <Route path="/" exact component={FoodMenu} />
+              <Route path="/basket" exact component={BasketItems} />
+            </Switch>
+          </Router>
+        </BasketContextProvider>
+      </FoodContextProvider>
     </div>
   );
 }
