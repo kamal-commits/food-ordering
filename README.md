@@ -1,4 +1,4 @@
-## WEBSITE PREVIEW : https://cocky-euclid-2c763a.netlify.app/
+## WEBSITE PREVIEW : https://food-ordering.netlify.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
